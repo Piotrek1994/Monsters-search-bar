@@ -1,3 +1,4 @@
+import { computeHeadingLevel } from '@testing-library/react';
 import { Component } from 'react'
 import './App.css'
 
@@ -8,7 +9,7 @@ class App extends Component {
 		this.state = {
 			monsters: [],
 		}
-		console.log('cinstructor');
+		console.log('constructor');
 	}
 
 
@@ -29,11 +30,28 @@ class App extends Component {
 		console.log('render')
 		return (
 			<div className='App'>
+			<input onChange={(event) => {
+				console.log(event.target.value)
+				const searchString = event.target.value.toLocaleLowerCase()
+				const filteredMonsters = this.state.monsters.filter((monster) => {
+					return monster.name.toLocaleLowerCase().includes(searchString)
+
+				});
+				this.setState(() => {
+					return {monsters: filteredMonsters}
+
+				})
+				}}
+
+
+
+			 className='search-box' type="search" placeholder='search monsters' />
 				{this.state.monsters.map(monster => {
 					return <div key={monster.id}>
 					<h1>{monster.name}</h1>
 					</div>
 				})}
+				
 			</div>
 		)
 	}
