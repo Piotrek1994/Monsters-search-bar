@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import './App.css'
+import CardList from './components/card-list/card-list.component'
 
 class App extends Component {
 	constructor() {
@@ -38,23 +39,25 @@ onSearchChange = (event) => {
 
 	render() {
 		console.log('render')
+		
+		const {monsters, searchField,} = this.state
+		const { onSearchChange} = this
 
-		const filteredMonsters = this.state.monsters.filter((monster) => {
-			return monster.name.toLocaleLowerCase().includes(this.state.searchField);
+		const filteredMonsters = monsters.filter((monster) => {
+			return monster.name.toLocaleLowerCase().includes(searchField);
 		})
 
 
 
 		return (
 			<div className='App'>
-			<input onChange={this.onSearchChange}
-			 className='search-box' type="search" placeholder='search monsters' />
-				{filteredMonsters.map(monster => {
-					return <div key={monster.id}>
-					<h1>{monster.name}</h1>
-					</div>
-				})}
+			<input 
+			 className='search-box' 
+			 type="search" 
+			 placeholder='search monsters'
+			 onChange={onSearchChange} />
 				
+				<CardList monsters={filteredMonsters}/>
 			</div>
 		)
 	}
