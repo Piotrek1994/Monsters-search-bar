@@ -1,4 +1,4 @@
-import { Component } from 'react'
+
 import './App.css'
 import CardList from './components/card-list/card-list.component'
 import SearchBox from './components/search-box/search-box.component'
@@ -8,7 +8,7 @@ const App = () => {
 	const [searchField, setSearchField] = useState('')
 	const [monsters, setMonsters] = useState([])
 	const [filteredMonsters, setFilteredMonsters] = useState(monsters)
-	const [stringField, setStringField] = useState('')
+
 
 	useEffect(() => {
 		fetch('https://jsonplaceholder.typicode.com/users')
